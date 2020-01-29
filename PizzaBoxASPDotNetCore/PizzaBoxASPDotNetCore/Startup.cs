@@ -2,12 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PizzaBoxLibrary.Abstractions;
+using PizzaBoxRepository.Models;
+using PizzaBoxRepository.Repositories; 
+
+
 
 namespace PizzaBoxASPDotNetCore
 {
@@ -23,6 +30,18 @@ namespace PizzaBoxASPDotNetCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+		//looks for connections string from one of the .json files
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+            
+            services.AddDbContext<DBPizzaBoxContext>(options =>
+                options.UseSqlServer(connectionString));
+            // Adding Dependency to your Controller to use Db
+            
+            //DIP - Dipendency Injection 
+            services.AddTransient<IRepositoryPizzaUser<PizzaBoxLibrary.Models.PizzaUser>, PizzaBoxRepository.Repositories.RepositoryPizzaUser>();
+
+
             services.AddControllersWithViews();
         }
 

@@ -6,6 +6,9 @@ project.lock.json
 nupkg/
 
 
+appsettings.development.json
+*secrets.json
+secrets.json
 appsettings.json
 
 # Visual Studio Code
