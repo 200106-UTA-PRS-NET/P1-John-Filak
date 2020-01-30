@@ -41,7 +41,7 @@ namespace PizzaBoxRepository
             };
         }
 
-
+        #region store
 
 
         public static PizzaBoxLibrary.Models.Store Map(PizzaBoxRepository.Models.Store pizzastore)
@@ -58,6 +58,22 @@ namespace PizzaBoxRepository
             };
         }
 
+        public static PizzaBoxRepository.Models.Store Map(PizzaBoxLibrary.Models.Store pizzastore)
+        {
+            return new PizzaBoxRepository.Models.Store()
+            {
+                Storename = pizzastore.Storename,
+                StorePassword = pizzastore.StorePassword,
+                Cell = pizzastore.Cell,
+                StoreAddress = pizzastore.StoreAddress,
+                PresetSpecial = pizzastore.PresetSpecial,
+                PresetPizzaId = pizzastore.PresetPizzaId,
+                StoreJoinDate = pizzastore.StoreJoinDate
+            };
+        }
+
+        #endregion
+
 
         public static PizzaBoxLibrary.Models.PizzaOrder Map(PizzaBoxRepository.Models.PizzaOrder pizzaorder) 
         {
@@ -72,11 +88,45 @@ namespace PizzaBoxRepository
             };
         }
 
+        public static PizzaBoxRepository.Models.PizzaOrder Map(PizzaBoxLibrary.Models.PizzaOrder pizzaorder)
+        {
+            return new PizzaBoxRepository.Models.PizzaOrder()
+            {
+                Orderid = pizzaorder.Orderid,
+                Username = pizzaorder.Username,
+                Storename = pizzaorder.Storename,
+                Cost = pizzaorder.Cost,
+                OrderDate = pizzaorder.OrderDate
+
+            };
+        }
+
+
         public static PizzaBoxLibrary.Models.Pizza Map(PizzaBoxRepository.Models.Pizza pizza)
         {
             return new PizzaBoxLibrary.Models.Pizza()
             {
                 OrderId = pizza.Orderid,
+                Cost = pizza.Cost,
+                Crust = pizza.Crust,
+                Size = pizza.Size,
+                ExtraCheese = pizza.ExtraCheese,
+                Bacon = pizza.Bacon,
+                Pepperoni = pizza.Pepperoni,
+                Mozzerella = pizza.Mozzerella,
+                Sausage = pizza.Sausage,
+                Pineapple = pizza.Pineapple,
+                Onion = pizza.Onion,
+                Chicken = pizza.Chicken,
+                Pepper = pizza.Pepper
+            };
+        }
+
+        public static PizzaBoxRepository.Models.Pizza Map(PizzaBoxLibrary.Models.Pizza pizza)
+        {
+            return new PizzaBoxRepository.Models.Pizza()
+            {
+                Orderid = pizza.OrderId,
                 Cost = pizza.Cost,
                 Crust = pizza.Crust,
                 Size = pizza.Size,

@@ -4,6 +4,7 @@ using PizzaBoxRepository.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace PizzaBoxRepository.Repositories
 {
@@ -22,12 +23,16 @@ namespace PizzaBoxRepository.Repositories
 
         public void AddPizza(PizzaBoxLibrary.Models.Pizza pizza)
         {
-            throw new NotImplementedException();
+            db.Pizza.Add(Mapper.Map(pizza));
+            db.SaveChanges();
         }
 
         public IEnumerable<PizzaBoxLibrary.Models.Pizza> GetPizzas()
         {
-            throw new NotImplementedException();
+            var query = from e in db.Pizza
+                        select Mapper.Map(e);
+
+            return query;
         }
     }
 }

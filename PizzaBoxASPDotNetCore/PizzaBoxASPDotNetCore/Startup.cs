@@ -12,9 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PizzaBoxLibrary.Abstractions;
 using PizzaBoxRepository.Models;
-using PizzaBoxRepository.Repositories; 
-
-
+using PizzaBoxRepository.Repositories;
+using PizzaBoxWeb.Models;
 
 namespace PizzaBoxASPDotNetCore
 {
@@ -40,6 +39,23 @@ namespace PizzaBoxASPDotNetCore
             
             //DIP - Dipendency Injection 
             services.AddTransient<IRepositoryPizzaUser<PizzaBoxLibrary.Models.PizzaUser>, PizzaBoxRepository.Repositories.RepositoryPizzaUser>();
+            services.AddTransient<IRepositoryStore<PizzaBoxLibrary.Models.Store>, PizzaBoxRepository.Repositories.RepositoryStore>();
+            services.AddTransient<IRepositoryPizzaOrder<PizzaBoxLibrary.Models.PizzaOrder>, PizzaBoxRepository.Repositories.RepositoryPizzaOrder>();
+            services.AddTransient<IRepositoryPizza<PizzaBoxLibrary.Models.Pizza>, PizzaBoxRepository.Repositories.RepositoryPizza>();
+
+
+
+            /*
+            services.AddIdentity<PizzaUserViewModel, Role>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityAppContext>(); 
+            */
+
+
+
+
+
 
 
             services.AddControllersWithViews();
@@ -60,6 +76,8 @@ namespace PizzaBoxASPDotNetCore
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //app.UseAuthentication();
 
             app.UseRouting();
 

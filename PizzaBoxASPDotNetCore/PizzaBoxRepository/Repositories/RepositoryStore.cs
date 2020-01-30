@@ -4,6 +4,8 @@ using PizzaBoxRepository.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+
 
 namespace PizzaBoxRepository.Repositories
 {
@@ -21,12 +23,20 @@ namespace PizzaBoxRepository.Repositories
 
         public void AddStore(PizzaBoxLibrary.Models.Store pizzastore)
         {
-            throw new NotImplementedException();
+            db.Store.Add(Mapper.Map(pizzastore));
+            db.SaveChanges();
+            
         }
+
 
         public IEnumerable<PizzaBoxLibrary.Models.Store> GetStores()
         {
-            throw new NotImplementedException();
+            
+                var query = from e in db.Store
+                            select Mapper.Map(e);
+
+                return query;
+            
         }
     }
 }
