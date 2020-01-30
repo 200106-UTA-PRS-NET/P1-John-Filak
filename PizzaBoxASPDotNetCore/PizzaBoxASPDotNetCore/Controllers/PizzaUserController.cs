@@ -38,6 +38,9 @@ namespace PizzaBoxWeb.Controllers
             return View(viewModels);
         }
 
+        
+
+
         // GET: PizzaUser/Details/5
         public ActionResult Details(int id)
         {
@@ -47,17 +50,33 @@ namespace PizzaBoxWeb.Controllers
         // GET: PizzaUser/Create
         public ActionResult Create()
         {
-            return View();
+            return View("/Home/SignUp");
         }
+
+
+     
 
         // POST: PizzaUser/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PizzaUserViewModel pizzaUser)
         {
             try
             {
+
                 // TODO: Add insert logic here
+                PizzaBoxLibrary.Models.PizzaUser newUser = new PizzaBoxLibrary.Models.PizzaUser()
+                {
+                    Username = pizzaUser.Username,
+                    UserPassword = pizzaUser.UserPassword,
+                    FirstName = pizzaUser.FirstName,
+                    LastName = pizzaUser.LastName,
+                    Cell = pizzaUser.Cell, 
+                    UserAddress = pizzaUser.UserAddress,
+                    Email = pizzaUser.Email
+                };
+
+                userrepo.AddPizzaUser(newUser);
 
                 return RedirectToAction(nameof(Index));
             }
