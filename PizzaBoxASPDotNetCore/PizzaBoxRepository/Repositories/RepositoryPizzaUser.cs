@@ -14,18 +14,16 @@ namespace PizzaBoxRepository.Repositories
 
 
         DBPizzaBoxContext db;
-
         public RepositoryPizzaUser()
         {
             db = new DBPizzaBoxContext();
         }
-
         public RepositoryPizzaUser(DBPizzaBoxContext db)
         {
             this.db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-
+        //LOGIN
         public int ValidLogin(string UID, string PW)
         {
             if(db.PizzaUser.Any(e => e.Username == UID & e.UserPassword == PW)){

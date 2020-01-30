@@ -4,7 +4,10 @@ using System.Text;
 
 namespace PizzaBoxLibrary.Abstractions
 {
-    interface IRepositoryPizzaOrder<T>
+    public interface IRepositoryPizzaOrder<T>
     {
+        IEnumerable<T> GetPizzaOrders();
+
+        void AddPizzaOrder(T pizzaorder);
     }
 }

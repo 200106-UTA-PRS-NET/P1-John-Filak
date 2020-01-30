@@ -4,7 +4,12 @@ using System.Text;
 
 namespace PizzaBoxLibrary.Abstractions
 {
-    interface IRepositoryStore<T>
+    public interface IRepositoryStore<T>
     {
+        IEnumerable<T> GetStores();
+
+        void AddStore(T pizzastore);
+
+
     }
 }
