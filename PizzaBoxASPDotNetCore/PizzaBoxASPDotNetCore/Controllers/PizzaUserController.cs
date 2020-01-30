@@ -12,35 +12,24 @@ namespace PizzaBoxWeb.Controllers
 {
     public class PizzaUserController : Controller
     {
-
         public IRepositoryPizzaUser<PizzaBoxLibrary.Models.PizzaUser> userrepo; 
-
         public PizzaUserController(IRepositoryPizzaUser<PizzaBoxLibrary.Models.PizzaUser> PizzaUserRepo)
         {
             userrepo = PizzaUserRepo;
-
         }
-
-
         // GET: PizzaUser
-        public ActionResult Index()
-        {
+        public ActionResult Index(){
             IEnumerable<PizzaBoxLibrary.Models.PizzaUser> pizzausers = userrepo.GetPizzaUser();
             IEnumerable<PizzaUserViewModel> viewModels = pizzausers.Select( x => new PizzaUserViewModel
             {
                 Username = x.Username,
                 FirstName = x.FirstName,
                 LastName = x.LastName
-
-
             });
-
             return View(viewModels);
         }
 
         
-
-
         // GET: PizzaUser/Details/5
         public ActionResult Details(int id)
         {
@@ -53,8 +42,39 @@ namespace PizzaBoxWeb.Controllers
             return View("/Home/SignUp");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(PizzaUserViewModel pizzaUser)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                string UsernameInput = pizzaUser.Username;
+                string UserPasswordInput = pizzaUser.UserPassword;
 
-     
+                int response = userrepo.ValidLogin(UsernameInput, UserPasswordInput);
+
+                if(response == 1)
+                {
+                    Console.WriteLine("WELCOME");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    Console.WriteLine("Denied");
+                  
+                    return RedirectToAction("Login","Home");
+                }
+
+
+                
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         // POST: PizzaUser/Create
         [HttpPost]
@@ -78,7 +98,7 @@ namespace PizzaBoxWeb.Controllers
 
                 userrepo.AddPizzaUser(newUser);
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login", "Home");
             }
             catch
             {

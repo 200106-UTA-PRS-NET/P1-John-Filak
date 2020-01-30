@@ -9,6 +9,8 @@ namespace PizzaBoxLibrary.Abstractions
             IEnumerable<T> GetPizzaUser();
             void AddPizzaUser(T pizzauser);
 
+            int ValidLogin(string Username, string Password);
+
         
     }
 }

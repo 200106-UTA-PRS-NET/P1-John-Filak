@@ -26,6 +26,18 @@ namespace PizzaBoxRepository.Repositories
         }
 
 
+        public int ValidLogin(string UID, string PW)
+        {
+            if(db.PizzaUser.Any(e => e.Username == UID & e.UserPassword == PW)){
+                return 1; 
+            }
+            else
+            {
+                Console.WriteLine("Invalid Username or Password");
+                return 0; 
+            }
+        }
+
 
         //CREATE 
         public void AddPizzaUser(PizzaBoxLibrary.Models.PizzaUser pizzauser)
