@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "LoggedIn";
+}
+
+<h1>Loggin In</h1>
+<h4>Hello @TempData["Login"].ToString()</h4>
+@{
+        TempData.Keep("Login");
+ }
+
+<a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Create" role="button">Start An Order</a>
+

@@ -10,9 +10,13 @@ namespace PizzaBoxWeb.Models
 {
     public class IdentityAppContext :IdentityDbContext<PizzaUserViewModel, Role, int>
     {
+
         public IdentityAppContext(DbContextOptions<IdentityAppContext> options): base(options)
         {
 
         }
+
+
+
     }
 }

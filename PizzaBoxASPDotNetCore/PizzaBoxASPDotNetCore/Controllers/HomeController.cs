@@ -34,6 +34,10 @@ namespace PizzaBoxASPDotNetCore.Controllers
             return View();
         }
 
+        public IActionResult LoggedIn()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

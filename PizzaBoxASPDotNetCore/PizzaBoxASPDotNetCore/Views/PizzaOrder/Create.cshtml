@@ -1,0 +1,51 @@
+﻿@model PizzaBoxWeb.Models.PizzaOrderViewModel
+
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PizzaOrderViewModel</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @*@Html.BeginForm("Create","PizzaUser",FormMethod.Post,antiforgery:true)*@
+        <form asp-action="Start" asp-controller="PizzaOrder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" value=@TempData["Login"].ToString() readonly />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+             
+            <div class="form-group">
+
+                <!-- <label asp-for="Storename" class="control-label"></label>  -->
+                <select asp-for="Storename">
+                    @foreach (var str in ViewData["Stores"] as IEnumerable<PizzaBoxWeb.Models.StoreViewModel>)
+                    {
+                        <option> @str.Storename </option>
+                    }
+
+                </select>
+                <!--
+    <input asp-for="Storename" class="form-control" />
+     -->
+
+                <span asp-validation-for="Storename" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Start Order" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

@@ -17,6 +17,7 @@ namespace PizzaBoxWeb.Controllers
         {
             userrepo = PizzaUserRepo;
         }
+
         // GET: PizzaUser
         public ActionResult Index(){
             IEnumerable<PizzaBoxLibrary.Models.PizzaUser> pizzausers = userrepo.GetPizzaUser();
@@ -28,6 +29,9 @@ namespace PizzaBoxWeb.Controllers
             });
             return View(viewModels);
         }
+
+
+        
 
         
         // GET: PizzaUser/Details/5
@@ -57,7 +61,9 @@ namespace PizzaBoxWeb.Controllers
                 if(response == 1)
                 {
                     Console.WriteLine("WELCOME");
-                    return RedirectToAction("Index", "Home");
+                    TempData["Login"] = UsernameInput;
+
+                    return RedirectToAction("LoggedIn", "Home");
                 }
                 else
                 {

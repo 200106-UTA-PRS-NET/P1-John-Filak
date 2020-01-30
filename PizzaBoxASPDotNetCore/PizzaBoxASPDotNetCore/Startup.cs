@@ -14,6 +14,7 @@ using PizzaBoxLibrary.Abstractions;
 using PizzaBoxRepository.Models;
 using PizzaBoxRepository.Repositories;
 using PizzaBoxWeb.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace PizzaBoxASPDotNetCore
 {
@@ -45,15 +46,16 @@ namespace PizzaBoxASPDotNetCore
 
 
 
-            /*
+            //Adding Identity
             services.AddIdentity<PizzaUserViewModel, Role>(options =>
             {
-                options.User.RequireUniqueEmail = true;
-            }).AddEntityFrameworkStores<IdentityAppContext>(); 
-            */
+               // options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityAppContext>();
 
-
-
+            services.AddDbContext<IdentityAppContext>(options =>
+            {
+                options.UseSqlServer(connectionString);
+            });
 
 
 
@@ -77,7 +79,11 @@ namespace PizzaBoxASPDotNetCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //app.UseAuthentication();
+
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+
+
 
             app.UseRouting();
 
