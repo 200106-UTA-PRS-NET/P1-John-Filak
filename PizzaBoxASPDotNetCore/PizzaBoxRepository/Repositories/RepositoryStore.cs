@@ -41,7 +41,7 @@ namespace PizzaBoxRepository.Repositories
 
         public int ValidLogin(string storename, string password)
         {
-            if (db.PizzaUser.Any(e => e.Username == storename & e.UserPassword == password))
+            if (db.Store.Any(e => e.Storename == storename & e.StorePassword == password))
             {
                 return 1;
             }

@@ -4,8 +4,6 @@
     ViewData["Title"] = "Start";
 }
 
-<h1>Starting Order</h1>
-
 <h4>@TempData["Username"].ToString() : Starting Order From @TempData["Store"].ToString() </h4>
 @{
     TempData.Keep("Username");
@@ -13,8 +11,6 @@
     TempData.Keep("OrderId");
     TempData.Keep("Total");
 }
-
-
 
 <hr />
 <div class="row">
@@ -140,7 +136,7 @@
 
 
             <div class="form-group">
-                <input type="submit" value="Create Pie" class="btn btn-primary" />
+                <input id="SubmitButton" class="invisible" type="submit" value="Create Pie" class="btn btn-primary"  />
             </div>
         </form>
         <div class="form-group">
@@ -156,6 +152,7 @@
 
 <script>
     function Calculate() {
+        $("#SubmitButton").removeClass("invisible");
         debugger;
         var crs = document.getElementById("crustid").value;
         var sze = document.getElementById("sizeid").value;

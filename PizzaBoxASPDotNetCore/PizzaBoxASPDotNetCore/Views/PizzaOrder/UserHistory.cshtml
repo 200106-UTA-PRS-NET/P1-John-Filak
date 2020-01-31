@@ -6,22 +6,22 @@
 
 }
 
-<h1>@TempData["Login"].ToString() :  Your Past Orders </h1>
+<h4 class="text-center">@TempData["Login"].ToString() :  Your Past Orders </h4>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Orderid)
+                Order Number
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Storename)
+               Storename
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cost)
+               Order Price
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
+               Order Date
             </th>
             <th></th>
         </tr>

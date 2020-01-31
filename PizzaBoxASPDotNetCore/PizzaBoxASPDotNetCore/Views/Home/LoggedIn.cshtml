@@ -3,15 +3,22 @@
     ViewData["Title"] = "LoggedIn";
 }
 
-<h1>Loggin In</h1>
-<h4>Hello @TempData["Login"].ToString()</h4>
+
+<h4 class="text-center">Welcome @TempData["Login"].ToString()</h4>
 @{
         TempData.Keep("Login");
  }
 
-<a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Create" role="button">Start An Order</a>
+<div class="container align-content-center ">
+    <a class="btn btn-primary btn-lg all" asp-controller="PizzaOrder" asp-action="Create" role="button">Start An Order</a>
+</div>
+
+<div class="= container align-content-center">
+
+    <a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="UserHistory" role="button">View Past Orders</a>
+</div>
 
 
-<a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="UserHistory" role="button">View Past Orders</a>
-
-<a class="btn btn-primary btn-lg" asp-controller="" asp-action="" role="button">Logout</a>
+<div class="= container align-content-center">
+    <a class="btn btn-primary btn-lg" asp-controller="" asp-action="" role="button">Logout</a>
+</div>

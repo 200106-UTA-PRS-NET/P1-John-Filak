@@ -10,9 +10,6 @@ namespace PizzaBoxRepository.Repositories
     public class RepositoryPizzaUser : IRepositoryPizzaUser<PizzaBoxLibrary.Models.PizzaUser>
     {
 
-
-
-
         DBPizzaBoxContext db;
         public RepositoryPizzaUser()
         {

@@ -9,7 +9,7 @@
     TempData.Keep("Total");
 }
 
-<h4>@TempData["Username"].ToString() Ordering from @TempData["Store"].ToString() Order Number @TempData["Orderid"].ToString()</h4>
+<h4 class="text-center">@TempData["Username"].ToString() Ordering from @TempData["Store"].ToString() Order Number @TempData["Orderid"].ToString()</h4>
 
 
 
@@ -65,53 +65,55 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pid)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Crust)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExtraCheese)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Bacon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pepperoni)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mozzerella)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sausage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pineapple)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Onion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Chicken)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pepper)
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Crust)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExtraCheese)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bacon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pepperoni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mozzerella)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sausage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pineapple)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Onion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chicken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pepper)
+            </td>
+            <!--
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    -->
+        </tr>
         }
     </tbody>
 </table>
@@ -120,13 +122,13 @@
 </div>
 
 <div>
-    <span> Order Total: @TempData["Total"].ToString() </span>
-
-    <span><a onclick="checkOrder()" class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Submit" role="button">Submit Order!</a></span>
-
-    <span><a class="btn btn-primary btn-lg" asp-controller="Pizza" asp-action="DeletePizzas" role="button"> Cancel Order :(</a></span>
-
+    Order Total: @TempData["Total"].ToString()
+    <a onclick="checkOrder()" class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Submit" role="button">Submit Order!</a>
 </div>
+<div>
+    <a class="btn btn-primary btn-lg" asp-controller="Pizza" asp-action="DeletePizzas" role="button"> Cancel Order :(</a>
+</div>
+
 <script>
     checkOrder(){
 
