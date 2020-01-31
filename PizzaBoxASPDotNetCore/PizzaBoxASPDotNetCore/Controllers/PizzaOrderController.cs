@@ -50,6 +50,14 @@ namespace PizzaBoxWeb.Controllers
 
 
 
+        public ActionResult DeleteUserOrder()
+        {
+            TempData["Login"] = TempData["Username"].ToString();
+            orderrepo.DeleteOrder(int.Parse(TempData["Orderid"].ToString()));
+
+            return RedirectToAction("LoggedIn", "Home");
+        }
+
 
 
 
@@ -121,6 +129,38 @@ namespace PizzaBoxWeb.Controllers
                 return View();
             }
         }
+
+        public ActionResult Submit()
+        {
+            TempData.Keep("Username");
+            TempData.Keep("Store");
+            TempData.Keep("Orderid");
+            TempData.Keep("Total");
+
+            //update order cost and order date 
+            orderrepo.UpdateOrder(int.Parse(TempData["Orderid"].ToString()), decimal.Parse(TempData["Total"].ToString()));
+            TempData["Login"] = TempData["Username"];
+
+            return RedirectToAction("LoggedIn","Home");
+        }
+
+        public ActionResult UserHistory()
+        {
+            TempData.Keep("Login");
+            IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> orders = orderrepo.GetOrdersByUser(TempData["Login"].ToString());
+            IEnumerable<PizzaOrderViewModel> personalOrders = orders.Select(x => new PizzaOrderViewModel
+            {
+                Orderid = x.Orderid,
+                Storename = x.Storename,
+                Cost = x.Cost,
+                OrderDate = x.OrderDate
+
+            }) ;
+
+
+            return View(personalOrders);
+        }
+
 
         // GET: Order/Edit/5
         public ActionResult Edit(int id)

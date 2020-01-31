@@ -19,6 +19,13 @@ namespace PizzaBoxWeb.Controllers
             pizzarepo = PizzaRepo;
         }
 
+        public ActionResult DeletePizzas()
+        {
+            TempData.Keep("Username");
+            TempData.Keep("Orderid");
+            pizzarepo.DeletePizzas(int.Parse(TempData["Orderid"].ToString()));
+            return RedirectToAction("DeleteUserOrder", "PizzaOrder");
+        }
 
 
         // GET: Pizza

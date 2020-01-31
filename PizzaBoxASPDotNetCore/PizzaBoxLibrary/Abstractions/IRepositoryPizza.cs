@@ -11,6 +11,7 @@ namespace PizzaBoxLibrary.Abstractions
 
         IEnumerable<T> GetPizzasByOrderId(int oid);
 
+        void DeletePizzas(int oid); 
 
     }
 }

@@ -27,6 +27,17 @@ namespace PizzaBoxRepository.Repositories
             db.SaveChanges();
         }
 
+        public void DeleteOrder(int orderid)
+        {
+            var query = (from e in db.PizzaOrder
+                         where e.Orderid == orderid
+                         select e).FirstOrDefault(); ;
+  
+            db.PizzaOrder.Remove(query);
+            db.SaveChanges();
+
+        }
+
         public int GetMyOrder(string Username, string Storename)
         {
             var query = (from e in db.PizzaOrder
@@ -38,6 +49,15 @@ namespace PizzaBoxRepository.Repositories
             return orderid; 
         }
 
+        public IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> GetOrdersByUser(string username)
+        {
+            var query = (from e in db.PizzaOrder
+                         where e.Username.Equals(username)
+                         select Mapper.Map(e));
+
+            return query;
+        }
+
         public IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> GetPizzaOrders()
         {
             var query = from e in db.PizzaOrder
@@ -47,7 +67,25 @@ namespace PizzaBoxRepository.Repositories
 
         }
 
-
-
+        public void UpdateOrder(int orderid, decimal cost)
+        {
+            DateTime cur = DateTime.Now;
+            var query = from e in db.PizzaOrder
+                        where e.Orderid == orderid
+                        select e;
+            foreach (Models.PizzaOrder e in query)
+            {
+                e.Cost = cost;
+                e.OrderDate = cur;
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
 }

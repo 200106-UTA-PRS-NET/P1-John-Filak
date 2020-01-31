@@ -27,6 +27,18 @@ namespace PizzaBoxRepository.Repositories
             db.SaveChanges();
         }
 
+        public void DeletePizzas(int oid)
+        {
+            var query = from e in db.Pizza
+                        where e.Orderid == oid
+                        select e;
+            foreach (var p in query)
+            {
+                db.Pizza.Remove(p);
+            }
+            db.SaveChanges();
+        }
+
         public IEnumerable<PizzaBoxLibrary.Models.Pizza> GetPizzas()
         {
             var query = from e in db.Pizza

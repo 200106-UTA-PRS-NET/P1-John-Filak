@@ -122,9 +122,9 @@
 <div>
     <span> Order Total: @TempData["Total"].ToString() </span>
 
-    <span><a onclick="checkOrder()" class="btn btn-primary btn-lg" asp-controller="Home" asp-action="LoggedIn" role="button">Submit Order!</a></span>
+    <span><a onclick="checkOrder()" class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Submit" role="button">Submit Order!</a></span>
 
-    <span><a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Delete" role="button"> Cancel Order :(</a></span>
+    <span><a class="btn btn-primary btn-lg" asp-controller="Pizza" asp-action="DeletePizzas" role="button"> Cancel Order :(</a></span>
 
 </div>
 <script>
