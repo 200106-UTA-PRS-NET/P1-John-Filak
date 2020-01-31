@@ -82,6 +82,16 @@ namespace PizzaBoxWeb.Controllers
             return View();
         }
 
+        public ActionResult MorePies()
+        {
+            TempData.Keep("Username");
+            TempData.Keep("Store");
+            TempData.Keep("Orderid");
+            TempData.Keep("Total");
+
+            return View("Start");
+        }
+
 
         public ActionResult PreOrder(IEnumerable<PizzaBoxWeb.Models.PizzaViewModel> pizzas)
         {

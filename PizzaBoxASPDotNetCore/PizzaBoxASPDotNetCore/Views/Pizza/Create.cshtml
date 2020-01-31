@@ -9,7 +9,7 @@
     TempData.Keep("Total");
 }
 
-<h1>@TempData["Username"].ToString() Ordering from @TempData["Store"].ToString() Order Number @TempData["Orderid"].ToString() : Total Price @TempData["Total"].ToString()</h1>
+<h4>@TempData["Username"].ToString() Ordering from @TempData["Store"].ToString() Order Number @TempData["Orderid"].ToString()</h4>
 
 
 
@@ -109,11 +109,29 @@
                     @Html.DisplayFor(modelItem => item.Pepper)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<div>
+    <a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="MorePies" role="button">Add Another Pizza!</a>
+</div>
+
+<div>
+    <span> Order Total: @TempData["Total"].ToString() </span>
+
+    <span><a onclick="checkOrder()" class="btn btn-primary btn-lg" asp-controller="Home" asp-action="LoggedIn" role="button">Submit Order!</a></span>
+
+    <span><a class="btn btn-primary btn-lg" asp-controller="PizzaOrder" asp-action="Delete" role="button"> Cancel Order :(</a></span>
+
+</div>
+<script>
+    checkOrder(){
+
+        
+
+
+        };
+</script>
