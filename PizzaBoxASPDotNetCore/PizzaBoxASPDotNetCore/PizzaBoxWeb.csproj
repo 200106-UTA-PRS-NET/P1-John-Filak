@@ -25,7 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\PizzaBoxLibrary\PizzaBoxLibrary.csproj" />
     <ProjectReference Include="..\PizzaBoxRepository\PizzaBoxRepository.csproj" />
-    <ProjectReference Include="..\PizzaBoxTesting\PizzaBoxTesting.csproj" />
   </ItemGroup>
 
 </Project>
