@@ -10,6 +10,8 @@ namespace PizzaBoxLibrary.Abstractions
 
         void AddStore(T pizzastore);
 
+        int ValidLogin(string storename, string password);
+
 
     }
 }

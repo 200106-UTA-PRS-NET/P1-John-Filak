@@ -34,6 +34,54 @@ namespace PizzaBoxWeb.Controllers
         }
 
 
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LoginAttempt(StoreViewModel store)
+        {
+            try
+            {
+                string StorenameInput = store.Storename ;
+                string StorePasswordInput = store.StorePassword;
+
+                int response = storerepo.ValidLogin(StorenameInput, StorePasswordInput);
+
+                if (response == 1)
+                {
+                    Console.WriteLine("WELCOME");
+                    TempData["Login"] = StorenameInput;
+
+                    return View("Home");
+                }
+                else
+                {
+                    Console.WriteLine("Denied");
+
+                    return RedirectToAction("Login", "Store");
+                }
+
+
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult BackToHome()
+        {
+            TempData.Keep("Login");
+            return View("Home");
+        }
+
+        public ActionResult Login()
+        {
+            
+            return View();
+        }
+
+
         // GET: Store/Details/
         public ActionResult Details(int id)
         {

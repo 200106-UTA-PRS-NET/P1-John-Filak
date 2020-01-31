@@ -49,6 +49,15 @@ namespace PizzaBoxRepository.Repositories
             return orderid; 
         }
 
+        public IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> GetOrdersByStore(string storename)
+        {
+            var query = (from e in db.PizzaOrder
+                         where e.Storename.Equals(storename)
+                         select Mapper.Map(e));
+
+            return query;
+        }
+
         public IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> GetOrdersByUser(string username)
         {
             var query = (from e in db.PizzaOrder

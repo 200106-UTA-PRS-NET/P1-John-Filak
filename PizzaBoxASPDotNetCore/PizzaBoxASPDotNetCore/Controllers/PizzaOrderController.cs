@@ -49,6 +49,27 @@ namespace PizzaBoxWeb.Controllers
         }
 
 
+        public ActionResult StoreOrders()
+        {
+            TempData.Keep("Login");
+
+            IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> orders = orderrepo.GetOrdersByStore(TempData["Login"].ToString());
+            IEnumerable<PizzaOrderViewModel> StoreOrders = orders.Select(x => new PizzaOrderViewModel
+            {
+                Orderid = x.Orderid,
+                Username = x.Username,
+                Cost = x.Cost,
+                OrderDate = x.OrderDate
+
+            });
+
+
+            return View(StoreOrders);
+
+
+           
+        }
+
 
         public ActionResult DeleteUserOrder()
         {

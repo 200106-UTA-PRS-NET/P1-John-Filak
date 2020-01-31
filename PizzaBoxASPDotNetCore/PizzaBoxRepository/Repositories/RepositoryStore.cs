@@ -38,5 +38,18 @@ namespace PizzaBoxRepository.Repositories
                 return query;
             
         }
+
+        public int ValidLogin(string storename, string password)
+        {
+            if (db.PizzaUser.Any(e => e.Username == storename & e.UserPassword == password))
+            {
+                return 1;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Username or Password");
+                return 0;
+            }
+        }
     }
 }

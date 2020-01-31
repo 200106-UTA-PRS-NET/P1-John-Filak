@@ -16,6 +16,8 @@ namespace PizzaBoxLibrary.Abstractions
 
         IEnumerable<T> GetOrdersByUser(string username);
 
+        IEnumerable<T> GetOrdersByStore(string storename);
+
         void DeleteOrder(int orderid); 
     }
 }
