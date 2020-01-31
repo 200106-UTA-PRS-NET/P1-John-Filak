@@ -34,5 +34,14 @@ namespace PizzaBoxRepository.Repositories
 
             return query;
         }
+
+        public IEnumerable<PizzaBoxLibrary.Models.Pizza> GetPizzasByOrderId(int oid)
+        {
+            var query = from e in db.Pizza
+                        where e.Orderid == oid
+                        select Mapper.Map(e);
+            return query;
+
+        }
     }
 }

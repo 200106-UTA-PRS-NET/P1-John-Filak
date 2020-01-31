@@ -27,6 +27,16 @@ namespace PizzaBoxRepository.Repositories
             db.SaveChanges();
         }
 
+        public int GetMyOrder(string Username, string Storename)
+        {
+            var query = (from e in db.PizzaOrder
+                         where e.Username.Equals(Username) & e.Storename.Equals(Storename)
+                         orderby e.OrderDate descending
+                         select e.Orderid).Take(1);
+
+            int orderid = query.FirstOrDefault();
+            return orderid; 
+        }
 
         public IEnumerable<PizzaBoxLibrary.Models.PizzaOrder> GetPizzaOrders()
         {

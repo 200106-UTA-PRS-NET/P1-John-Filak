@@ -4,7 +4,9 @@
 
 @{
     ViewData["Title"] = "Create";
+    TempData.Keep("Username");
 }
+
 
 <h1>Create</h1>
 
@@ -25,18 +27,13 @@
              
             <div class="form-group">
 
-                <!-- <label asp-for="Storename" class="control-label"></label>  -->
+                <label asp-for="Storename" class="control-label"></label>  
                 <select asp-for="Storename">
                     @foreach (var str in ViewData["Stores"] as IEnumerable<PizzaBoxWeb.Models.StoreViewModel>)
                     {
                         <option> @str.Storename </option>
                     }
-
                 </select>
-                <!--
-    <input asp-for="Storename" class="form-control" />
-     -->
-
                 <span asp-validation-for="Storename" class="text-danger"></span>
             </div>
 

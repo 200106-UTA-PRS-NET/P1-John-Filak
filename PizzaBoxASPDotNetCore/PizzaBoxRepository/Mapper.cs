@@ -106,6 +106,7 @@ namespace PizzaBoxRepository
         {
             return new PizzaBoxLibrary.Models.Pizza()
             {
+                Pid = pizza.Pid,
                 OrderId = pizza.Orderid,
                 Cost = pizza.Cost,
                 Crust = pizza.Crust,
@@ -126,6 +127,7 @@ namespace PizzaBoxRepository
         {
             return new PizzaBoxRepository.Models.Pizza()
             {
+                Pid = pizza.Pid,
                 Orderid = pizza.OrderId,
                 Cost = pizza.Cost,
                 Crust = pizza.Crust,

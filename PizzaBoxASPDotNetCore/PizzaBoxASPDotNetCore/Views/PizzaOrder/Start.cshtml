@@ -7,100 +7,212 @@
 <h1>Starting Order</h1>
 
 <h4>@TempData["Username"].ToString() : Starting Order From @TempData["Store"].ToString() </h4>
+@{
+    TempData.Keep("Username");
+    TempData.Keep("Store");
+    TempData.Keep("OrderId");
+    TempData.Keep("Total");
+}
 
-<hr/>
+
+
+<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Start">
+        @*@Html.BeginForm("","",FormMethod.Post,antiforgery:true)*@
+        <form asp-action="Create" asp-controller="Pizza">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Pid" class="control-label"></label>
-                <input asp-for="Pid" class="form-control" />
-                <span asp-validation-for="Pid" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="OrderId" class="control-label"></label>
-                <input asp-for="OrderId" class="form-control" />
+                <input asp-for="OrderId" value="@TempData["Orderid"].ToString()" class="form-control" readonly />
                 <span asp-validation-for="OrderId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cost" class="control-label"></label>
-                <input asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
-            </div>
+
+            <p> Select Up To 5 Toppings </p>
+
+
             <div class="form-group">
                 <label asp-for="Crust" class="control-label"></label>
-                <input asp-for="Crust" class="form-control" />
+                <select id="crustid" asp-for="Crust">
+                    <option>Regular</option>
+                    <option>Thin</option>
+                    <option>Deep Dish</option>
+                    <option>Stuffed</option>
+                </select>
                 <span asp-validation-for="Crust" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
                 <label asp-for="Size" class="control-label"></label>
-                <input asp-for="Size" class="form-control" />
+                <select id='sizeid' asp-for="Size">
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                    <option>X-Large</option>
+                </select>
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Cheese" class="control-label"></label>
-                <input asp-for="Cheese" class="form-control" />
-                <span asp-validation-for="Cheese" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sauce" class="control-label"></label>
-                <input asp-for="Sauce" class="form-control" />
-                <span asp-validation-for="Sauce" class="text-danger"></span>
-            </div>
+
+
             <div class="form-group">
                 <label asp-for="ExtraCheese" class="control-label"></label>
-                <input asp-for="ExtraCheese" class="form-control" />
+                <select id="excid" asp-for="Crust">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="ExtraCheese" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Bacon" class="control-label"></label>
-                <input asp-for="Bacon" class="form-control" />
+                <select id="bacid" asp-for="Bacon">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Bacon" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Pepperoni" class="control-label"></label>
-                <input asp-for="Pepperoni" class="form-control" />
+                <select id="pepid" asp-for="Pepperoni">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Pepperoni" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Mozzerella" class="control-label"></label>
-                <input asp-for="Mozzerella" class="form-control" />
+                <select id="mozid" asp-for="Mozzerella">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Mozzerella" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Sausage" class="control-label"></label>
-                <input asp-for="Sausage" class="form-control" />
+                <select id="sauid" asp-for="Sausage">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Sausage" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Pineapple" class="control-label"></label>
-                <input asp-for="Pineapple" class="form-control" />
+                <select id="pinid" asp-for="Pineapple">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Pineapple" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Onion" class="control-label"></label>
-                <input asp-for="Onion" class="form-control" />
+                <select id="oniid" asp-for="Onion">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Onion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Chicken" class="control-label"></label>
-                <input asp-for="Chicken" class="form-control" />
+                <select id="chiid" asp-for="Chicken">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Chicken" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Pepper" class="control-label"></label>
-                <input asp-for="Pepper" class="form-control" />
+                <select id="pprid" asp-for="Pepper">
+                    <option>0</option>
+                    <option>1</option>
+                </select>
                 <span asp-validation-for="Pepper" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Cost" class="control-label"></label>
+                <input id="cost" asp-for="Cost" value="" readonly />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create Pie" class="btn btn-primary" />
             </div>
         </form>
+        <div class="form-group">
+            <button onclick="Calculate()">Calculate Cost</button>
+        </div>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
+
+
+
+<script>
+    function Calculate() {
+        debugger;
+        var crs = document.getElementById("crustid").value;
+        var sze = document.getElementById("sizeid").value;
+
+        var exc = document.getElementById("excid").value;
+        var bac = document.getElementById("bacid").value;
+        var pep = document.getElementById("pepid").value;
+        var moz = document.getElementById("mozid").value;
+        var sau = document.getElementById("sauid").value;
+        var pin = document.getElementById("pinid").value;
+        var oni = document.getElementById("oniid").value;
+        var chi = document.getElementById("chiid").value;
+        var ppr = document.getElementById("pprid").value;
+
+        
+        var numToppings = (+exc + +bac + +pep + +moz + +sau + +pin + +oni + +chi + +ppr);
+
+
+        var baseCost = 10;
+
+        var costMultiplier = 1.00;
+
+        switch (crs) {
+            case "Deep Dish":
+                costMultiplier = (+costMultiplier + +0.2.toFixed(2));
+                break;
+            case "Thin":
+                costMultiplier = (+costMultiplier + +0.1.toFixed(2));
+                break;
+            case "Stuffed":
+                costMultiplier = (+costMultiplier + +0.3.toFixed(2));
+                break;
+
+        }// crust
+
+
+        switch (sze) {
+            case "Medium":
+                costMultiplier = (+costMultiplier + +0.1.toFixed(2));
+                break;
+            case "Large":
+                costMultiplier = (+costMultiplier + +0.2.toFixed(2));
+                break;
+            case "X-Large":
+                costMultiplier = (+costMultiplier + +0.3.toFixed(2));
+                break;
+        }//size
+
+        //each topic is one dollar
+        baseCost = (+baseCost + +numToppings)
+
+        var price = (+costMultiplier * +baseCost).toFixed(2);
+        
+        document.getElementById("cost").value = price;
+        return false; 
+
+
+
+    } 
+</script>

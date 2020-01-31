@@ -21,11 +21,6 @@ namespace PizzaBoxWeb.Controllers
         public IRepositoryStore<PizzaBoxLibrary.Models.Store> storerepo;
 
 
-
-
-        // GET: Order
-
-
         public ActionResult Index()
         {
             return View();
@@ -37,11 +32,11 @@ namespace PizzaBoxWeb.Controllers
             return View();
         }
 
+
+
         // GET: Order/Create
         public ActionResult Create()
         {
-            
-           
             IEnumerable<PizzaBoxLibrary.Models.Store> storesX = storerepo.GetStores();
             IEnumerable<StoreViewModel> stores = storesX.Select(x => new StoreViewModel
             {
@@ -62,14 +57,41 @@ namespace PizzaBoxWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Start(PizzaOrderViewModel order)
         {
+            PizzaBoxLibrary.Models.PizzaOrder newOrder = new PizzaBoxLibrary.Models.PizzaOrder()
+            {
+                Username = order.Username,
+                Storename = order.Storename,
+                Cost = new decimal(0.00)
+
+            };
+
+            orderrepo.AddPizzaOrder(newOrder);
+
+           // orderrepo.
+
                 string Username = order.Username;
                 string Storename = order.Storename;
+
+            //GET LAST ORDER NUMBER AND PASS IT SO PIZZAS WILL HAVE IT 
+                TempData["Orderid"] = orderrepo.GetMyOrder(Username, Storename);
                 TempData["Username"] = Username;
                 TempData["Store"] = Storename;
+                TempData["Total"] = 0; 
+                
 
             return View();
         }
 
+
+        public ActionResult PreOrder(IEnumerable<PizzaBoxWeb.Models.PizzaViewModel> pizzas)
+        {
+            TempData.Keep("Username");
+            TempData.Keep("Store");
+            TempData.Keep("Orderid");
+            TempData.Keep("Total");
+            
+            return View(pizzas);
+        }
 
 
 

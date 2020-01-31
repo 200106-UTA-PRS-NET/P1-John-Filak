@@ -9,5 +9,7 @@ namespace PizzaBoxLibrary.Abstractions
         IEnumerable<T> GetPizzaOrders();
 
         void AddPizzaOrder(T pizzaorder);
+
+        int GetMyOrder(string Username, string Storename);
     }
 }

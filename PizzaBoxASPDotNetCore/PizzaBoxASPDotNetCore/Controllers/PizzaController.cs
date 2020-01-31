@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaBoxLibrary.Abstractions;
+using PizzaBoxWeb.Models;
 
 namespace PizzaBoxWeb.Controllers
 {
@@ -41,13 +42,65 @@ namespace PizzaBoxWeb.Controllers
         // POST: Pizza/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PizzaViewModel pizza)
         {
+
+
+                TempData["Total"] = int.Parse(TempData["Total"].ToString()) + (int)pizza.Cost; 
+                TempData.Keep("Username");
+                TempData.Keep("Store");
+                TempData.Keep("OrderId");
+            
+
             try
             {
                 // TODO: Add insert logic here
+                PizzaBoxLibrary.Models.Pizza newPizza = new PizzaBoxLibrary.Models.Pizza()
+                {
+                    OrderId = pizza.OrderId, 
+                    Cheese = 1, 
+                    Sauce = 1, 
+                    Cost = pizza.Cost,
+                    Crust = pizza.Crust,
+                    Size = pizza.Size, 
+                    ExtraCheese = pizza.ExtraCheese, 
+                    Bacon = pizza.Bacon, 
+                    Pepperoni = pizza.Pepperoni, 
+                    Mozzerella = pizza.Mozzerella, 
+                    Sausage = pizza.Sausage,
+                    Pineapple = pizza.Pineapple,
+                    Onion = pizza.Onion, 
+                    Chicken = pizza.Chicken, 
+                    Pepper = pizza.Pepper
+                };
 
-                return RedirectToAction(nameof(Index));
+                pizzarepo.AddPizza(newPizza);
+
+                IEnumerable<PizzaBoxLibrary.Models.Pizza> currentpizzas = pizzarepo.GetPizzasByOrderId(int.Parse(TempData["OrderId"].ToString()));
+                IEnumerable<PizzaViewModel> pizzas = currentpizzas.Select(x => new PizzaViewModel
+                {
+                    Pid = x.Pid,
+                    OrderId = x.OrderId,
+                    Cheese = x.Cheese,
+                    Sauce= x.Sauce,
+                    Cost = x.Cost,
+                    Crust = x.Crust, 
+                    Size = x.Size,
+                    ExtraCheese = x.ExtraCheese,
+                    Bacon = x.Bacon,
+                    Pepperoni = x.Pepperoni,
+                    Mozzerella = x.Mozzerella,
+                    Sausage = x.Sausage,
+                    Pineapple = x.Pineapple,
+                    Onion = x.Onion,
+                    Chicken = x.Chicken,
+                    Pepper = x.Pepper
+
+                });
+
+                return View( pizzas);
+           
+                return RedirectToAction("PreOrder", "PizzaOrder", pizzas);
             }
             catch
             {

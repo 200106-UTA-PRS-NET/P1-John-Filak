@@ -1,0 +1,119 @@
+﻿@model IEnumerable<PizzaBoxWeb.Models.PizzaViewModel>
+
+
+@{
+    ViewData["Title"] = "Create";
+    TempData.Keep("Username");
+    TempData.Keep("Store");
+    TempData.Keep("Orderid");
+    TempData.Keep("Total");
+}
+
+<h1>@TempData["Username"].ToString() Ordering from @TempData["Store"].ToString() Order Number @TempData["Orderid"].ToString() : Total Price @TempData["Total"].ToString()</h1>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Crust)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExtraCheese)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bacon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pepperoni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mozzerella)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sausage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pineapple)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Onion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chicken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pepper)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Crust)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExtraCheese)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bacon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pepperoni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mozzerella)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sausage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pineapple)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Onion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chicken)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pepper)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
