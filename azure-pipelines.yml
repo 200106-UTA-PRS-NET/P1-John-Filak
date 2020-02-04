@@ -3,13 +3,8 @@ trigger:
 - master
 
 
-
-
 pool:
   vmImage: 'windows-latest'
-
-
-
 
 variables:
   solution: '**/*.sln'
@@ -32,6 +27,10 @@ steps:
     organization: 'pizzaboxsonnarcloud'
     scannerMode: 'MSBuild'
     projectKey: 'pizzaboxsonnarcloudjohnfilak'
+    extraProperties: 
+      sonar.cs.opencover.reportPaths="$(Build.ArtifactStagingDirectory)/coverage/*"
+      sonar.cs.vstest.reportPaths="$(Build.ArtifactStagingDirectory)/test/*.trx"
+      sonar.exclusions=**/wwwroot/lib/**/*
 # Build and test ASP.NET Core projects targeting the full .NET Framework.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
