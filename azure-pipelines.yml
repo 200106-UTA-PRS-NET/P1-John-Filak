@@ -11,7 +11,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  pathtosolution: ''
+  pathtosolution: '/PizzaBoxASPDotnetCore/'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
