@@ -36,11 +36,8 @@ steps:
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
-- task: SonarCloudAnalyze@1
 
-- task: SonarCloudPublish@1
-  inputs:
-    pollingTimeoutSec: '300'
+
 
 - task: VSBuild@1
   inputs:
@@ -54,7 +51,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
   
-  
+- task: SonarCloudAnalyze@1
+
 - script: dotnet test
     --configuration $(buildConfiguration)
     --logger trx
@@ -64,3 +62,7 @@ steps:
   workingDirectory: $(pathtosolution)
   displayName: 'dotnet test'
 
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
