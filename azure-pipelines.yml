@@ -11,6 +11,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
+  pathtosolution: ''
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -40,5 +41,6 @@ steps:
     --no-build
     --results-directory $(Build.ArtifactStagingDirectory)/test/
     /p:CollectCoverage=true
-  workingDirectory: $(pathtosolution)
+  workingDirectory: $(solution/)
   displayName: 'dotnet test'
+
