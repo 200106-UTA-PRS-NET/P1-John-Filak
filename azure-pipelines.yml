@@ -65,3 +65,20 @@ steps:
 - task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
+
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    arguments: --configuration $(buildConfiguration)
+    publishWebProjects: true
+    zipAfterPublish: true
+    workingDirectory: $(pathtosolution)
+  displayName: 'dotnet publish + zip'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure Pass - Sponsorship(2)(c4b7b3c1-4c5b-4915-a5c3-339b8626fbb3)'
+    appType: 'webAppLinux'
+    appName: 'PizzaBoxP1'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
